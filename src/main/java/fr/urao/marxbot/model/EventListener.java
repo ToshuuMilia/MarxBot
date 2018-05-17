@@ -7,10 +7,12 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class EventListener extends ListenerAdapter {
 	
+	private static CitationManager citationManager = new CitationManager();
+	
 	@Override
-	public void onReady(ReadyEvent event)
-	{
+	public void onReady(ReadyEvent event){
 		System.out.println("[INFO] MarxBot ready !");
+		citationManager.reload();
 	}
 	
 	@Override
@@ -28,19 +30,7 @@ public class EventListener extends ListenerAdapter {
 				if(msgParts[1].equals("cite")) {
 					// Case where MarxBot should do something about citations.
 					
-					if(msgParts.length >= 3 && msgParts[2].equals("reload")){
-						// Case where MarxBot should reload the citations from the citation file.
-						boolean reloaded = CitationManager.reload();
-						
-						if(reloaded){ textChannel.sendMessage("Citation file successfully reloaded !").queue(); }
-					} else {
-						// Case where MarxBot is asked a random citation.
-						String citation = CitationManager.getRandom();
-						
-						if (citation != null) {
-							textChannel.sendMessage(citation).queue();
-						}
-					}
+					citationManager.manageCall(event, msgParts);
 				} else if(msgParts[1].equals("shutdown") && event.getAuthor().getId().equals("133318295003594752")){
 					System.exit(0);
 				}
