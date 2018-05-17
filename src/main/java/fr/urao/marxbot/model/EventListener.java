@@ -33,11 +33,11 @@ public class EventListener extends ListenerAdapter {
 			Member member = event.getMember();
 			
 			String msgText = event.getMessage().getContentDisplay();
-			if(msgText.contains("@MarxBot")){
+			if(msgText.contains("!MBcite") && !event.getAuthor().isBot()){
 				int nc = (int) (Math.random()*citations.length);
 				
 				textChannel.sendMessage(citations[nc]).queue();
-				System.out.printf("(%s)[%s]<%s>: %s\n", guild.getName(), textChannel.getName(), member.getNickname(), msgText);
+//				System.out.printf("(%s)[%s]<%s>: %s\n", guild.getName(), textChannel.getName(), member.getNickname(), msgText);
 			}
 		}
 	}
