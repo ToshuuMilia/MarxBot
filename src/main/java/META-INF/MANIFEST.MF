@@ -1,3 +1,4 @@
 Manifest-Version: 1.0
+Class-Path: /home/toshuumilia/Workspace/MarxBot/src/main/java/
 Main-Class: fr.urao.marxbot.BotApp
 

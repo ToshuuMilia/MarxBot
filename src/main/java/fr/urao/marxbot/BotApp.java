@@ -2,7 +2,7 @@ package fr.urao.marxbot;
 
 import javax.security.auth.login.LoginException;
 
-import fr.urao.marxbot.model.EventListener;
+import fr.urao.marxbot.model.api.EventListener;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
