@@ -6,11 +6,12 @@ import fr.urao.marxbot.model.api.EventListener;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
+import org.jetbrains.annotations.NotNull;
 
 
 public class BotApp {
 	
-	public static void main(String[] args)
+	public static void main(@NotNull String[] args)
 	{
 		//We construct a builder for a BOT account. If we wanted to use a CLIENT account
 		// we would use AccountType.CLIENT

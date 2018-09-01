@@ -49,7 +49,7 @@ public class DBManager {
 		return people_words;
 	}
 	
-	public Optional<Integer> getNumberWords(String userId){
+	private Optional<Integer> getNumberWords(String userId){
 		Integer result = null;
 		String query = "SELECT number_words FROM people_words WHERE user_id=?;";
 		
