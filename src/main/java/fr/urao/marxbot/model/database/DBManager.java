@@ -2,9 +2,7 @@ package fr.urao.marxbot.model.database;
 
 
 import java.sql.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class DBManager {
 	
@@ -29,24 +27,30 @@ public class DBManager {
 		}
 	}
 	
-	public Map<String, Integer> getNumberWords(){
-		HashMap<String, Integer> people_words = new HashMap<>();
-		String query = "SELECT user_id, number_words FROM people_words;";
+	public String getNumberWords(){
+		StringBuilder messageSB = new StringBuilder();
+		String query = "SELECT user_id, number_words FROM people_words ORDER BY number_words DESC;";
 		
 		try(Connection connection = DriverManager.getConnection(databaseUrl)) {
 			Statement statement = connection.createStatement();
 			
 			ResultSet rs = statement.executeQuery(query);
 			
+			messageSB.append("```\nLe meilleur spammeur :\n");
 			while(rs.next()) {
-				people_words.put(rs.getString("user_id"), rs.getInt("number_words"));
+				messageSB.append(rs.getString("user_id"));
+				messageSB.append(" - ");
+				messageSB.append(rs.getInt("number_words"));
+				messageSB.append(" words.");
+				messageSB.append('\n');
 			}
+			messageSB.append("```");
 			
 		} catch (SQLException | NullPointerException e) {
 			e.printStackTrace();
 		}
 		
-		return people_words;
+		return messageSB.toString();
 	}
 	
 	private Optional<Integer> getNumberWords(String userId){

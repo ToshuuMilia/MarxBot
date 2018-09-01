@@ -60,18 +60,13 @@ public class EventListener extends ListenerAdapter {
 						}
 					});
 					
-					Map<String, Integer> peopleWords = dbManager.getNumberWords();
+					String message = dbManager.getNumberWords();
 					
-					StringBuilder msgMarxBotSB = new StringBuilder("```\n");
-					peopleWords.forEach((user_id, number_words) -> {
-						msgMarxBotSB.append(idNicknameMap.getOrDefault(user_id, "Unknown"));
-						msgMarxBotSB.append(" - ");
-						msgMarxBotSB.append(number_words);
-						msgMarxBotSB.append('\n');
-					});
-					msgMarxBotSB.append("```");
+					for(String id: idNicknameMap.keySet()){
+						message = message.replace(id, idNicknameMap.getOrDefault(id, "Unknown"));
+					}
 					
-					textChannel.sendMessage(msgMarxBotSB.toString()).queue();
+					textChannel.sendMessage(message).queue();
 				}
 				
 			} else if(!event.getAuthor().isBot() &&

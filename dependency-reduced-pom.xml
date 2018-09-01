@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>fr.urao.marxbot</groupId>
   <artifactId>MarxBot</artifactId>
-  <version>0.2.1</version>
+  <version>0.2.2</version>
   <build>
     <plugins>
       <plugin>
@@ -25,6 +25,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
+        <version>3.1.1</version>
         <executions>
           <execution>
             <phase>package</phase>
