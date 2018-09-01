@@ -62,14 +62,14 @@ public class EventListener extends ListenerAdapter {
 					
 					Map<String, Integer> peopleWords = dbManager.getNumberWords();
 					
-					StringBuilder msgMarxBotSB = new StringBuilder("```");
+					StringBuilder msgMarxBotSB = new StringBuilder("```\n");
 					peopleWords.forEach((user_id, number_words) -> {
 						msgMarxBotSB.append(idNicknameMap.getOrDefault(user_id, "Unknown"));
 						msgMarxBotSB.append(" - ");
 						msgMarxBotSB.append(number_words);
-						msgMarxBotSB.append("\n");
+						msgMarxBotSB.append('\n');
 					});
-					msgMarxBotSB.append(" ```");
+					msgMarxBotSB.append("```");
 					
 					textChannel.sendMessage(msgMarxBotSB.toString()).queue();
 				}
